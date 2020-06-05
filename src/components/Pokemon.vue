@@ -6,7 +6,7 @@
     <div v-if="pokemon && !error">
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
       <img :src="pokemon.sprites.front_default"/>
-      <p>Tipo: <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{type.type.name}}</span></p>
+      <p>Tipo: <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
     </div>
     <div class="error" v-else-if="error">{{error}}</div>
     <img v-if="loading" class="pokeball" src="/pokeball.svg" alt="">
@@ -23,7 +23,27 @@ export default {
       pokemon: null,
       pokemonToFind: "",
       error: "",
-      loading: false
+      loading: false,
+      types: [
+        {english: "normal", spanish: "normal"},
+        {english: "fighting", spanish: "lucha"},
+        {english: "flying", spanish: "volador"},
+        {english: "poison", spanish: "veneno"},
+        {english: "ground", spanish: "tierra"},
+        {english: "rock", spanish: "roca"},
+        {english: "bug", spanish: "bicho"},
+        {english: "ghost", spanish: "fantasma"},
+        {english: "steel", spanish: "acero"},
+        {english: "fire", spanish: "fuego"},
+        {english: "water", spanish: "agua"},
+        {english: "grass", spanish: "hierba"},
+        {english: "electric", spanish: "eléctrico"},
+        {english: "psychic", spanish: "psíquico"},
+        {english: "ice", spanish: "hielo"},
+        {english: "dragon", spanish: "dragón"},
+        {english: "dark", spanish: "oscuridad"},
+        {english: "fairy", spanish: "hada"}
+      ]
     }
   },
   methods: {
@@ -36,6 +56,13 @@ export default {
         .get(this.url + query)
         .then(response => (this.pokemon = response.data, this.loading = false))
         .catch( () => (this.error = "Pokémon no encontrado 404", this.loading = false))
+    },
+    changeLangType: function(type){
+      for (let index = 0; index < this.types.length; index++) {
+        if (type === this.types[index].english){
+          return this.types[index].spanish
+        }
+      }
     }
   }
 };
