@@ -9,10 +9,10 @@
       <p><strong>Tipo:</strong> <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
     </div>
     <div class="error" v-else-if="error">
-      <img class="not_found" src="/assets/404.png" alt="no encontrado" />
+      <img class="not_found" src="../assets/404.png" alt="no encontrado" />
       <p>Pokémon no encontrado...</p>
     </div>
-    <img v-if="loading" class="pokeball" src="/assets/pokeball.svg" alt="cargando">
+    <img v-if="loading" class="pokeball" src="../assets/pokeball.svg" alt="cargando">
   </div>
 </template>
 
