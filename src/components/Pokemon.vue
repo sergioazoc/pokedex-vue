@@ -8,8 +8,11 @@
       <img :src="pokemon.sprites.front_default"/>
       <p>Tipo: <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
     </div>
-    <div class="error" v-else-if="error">{{error}}</div>
-    <img v-if="loading" class="pokeball" src="/pokeball.svg" alt="">
+    <div class="error" v-else-if="error">
+      <img class="not_found" src="/404.png" alt="no encontrado" />
+      <p>Pokémon no encontrado...</p>
+    </div>
+    <img v-if="loading" class="pokeball" src="/pokeball.svg" alt="cargando">
   </div>
 </template>
 
@@ -22,7 +25,7 @@ export default {
       url: "https://pokeapi.co/api/v2/pokemon/",
       pokemon: null,
       pokemonToFind: "",
-      error: "",
+      error: false,
       loading: false,
       types: [
         {english: "normal", spanish: "normal"},
@@ -48,14 +51,14 @@ export default {
   },
   methods: {
     findPokemon: function(q){
-      this.error = ""
+      this.error = false
       this.pokemon = null
       this.loading = true
       let query = q.toLowerCase()
       axios
         .get(this.url + query)
         .then(response => (this.pokemon = response.data, this.loading = false))
-        .catch( () => (this.error = "Pokémon no encontrado 404", this.loading = false))
+        .catch( () => (this.error = true, this.loading = false))
     },
     changeLangType: function(type){
       for (let index = 0; index < this.types.length; index++) {
@@ -71,6 +74,13 @@ export default {
 <style scoped>
 .error{
   margin-top: 30px;
+}
+
+.not_found{
+  display: block;
+  margin: 0 auto;
+  height: 150px;
+  width: auto;
 }
 
 .pokeball{
