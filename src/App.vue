@@ -24,6 +24,21 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.input{
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: .25rem 0 0 .25rem;
+}
+.btn{
+  display: inline-block;
+  padding: .375rem .75rem;
+  font-size: 1rem;
+  border-radius: 0 .25rem .25rem 0;
+  background-color: #e3350d;
+  border-color: #e3350d;
+  color: #ffffff;
+}
+
 .type{
   margin: 0 5px;
   padding: 6px 10px;
