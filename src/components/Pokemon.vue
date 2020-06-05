@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1>Busca un Pokémon (nombre o número):</h1>
-    <input v-model="pokemonToFind" type="text">
+    <input v-model="pokemonToFind" @keyup.enter="findPokemon(pokemonToFind)" type="text">
     <button @click="findPokemon(pokemonToFind)">Buscar</button>
     <div v-if="pokemon && !error">
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
       <img :src="pokemon.sprites.front_default"/>
-      <p>Tipo: <span class="type" :class="type.type.name" v-for="(type, index) of pokemon.types" :key="index">{{type.type.name}}</span></p>
+      <p>Tipo: <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{type.type.name}}</span></p>
     </div>
     <div class="error" v-else-if="error">{{error}}</div>
     <img v-if="loading" class="pokeball" src="/pokeball.svg" alt="">
