@@ -31,8 +31,9 @@ export default {
       this.error = ""
       this.pokemon = null
       this.loading = true
+      let query = q.toLowerCase()
       axios
-        .get("https://pokeapi.co/api/v2/pokemon/"+q)
+        .get(this.url + query)
         .then(response => (this.pokemon = response.data, this.loading = false))
         .catch( () => (this.error = "Pokémon no encontrado 404", this.loading = false))
     }
