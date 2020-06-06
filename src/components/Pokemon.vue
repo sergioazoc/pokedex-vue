@@ -7,16 +7,16 @@
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
       <img :src="pokemon.sprites.front_default"/>
       <p><strong>Tipo:</strong> <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
-      <table class="stats">
-        <tr v-for="(stat, index) in pokemon.stats" :key="index">
-          <td>{{changeLangStats(stat.stat.name)}}</td>
-          <td>
-            <div class="bar_container">
-              <div class="bar" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div class="stats">
+        <div class="stat" v-for="(stat, index) in pokemon.stats" :key="index">
+          <div>
+            {{changeLangStats(stat.stat.name)}}
+          </div>
+          <div class="bar_container">
+            <div class="bar" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="error" v-else-if="error">
       <img class="not_found" src="../assets/404.png" alt="no encontrado" />
@@ -130,11 +130,20 @@ export default {
 .stats{
   text-align: left;
   margin: 30px auto;
+  max-width: 360px;
+  padding: 0 5px;
 }
+.stat{
+  display: flex;
+  margin: 5px 0;
+  justify-content: space-between;
+}
+
 .bar_container {
-position: relative; /* IE is dumb */
-width: 166px;
+position: relative;
+width: 216px;
 border: 1px solid #e3350d;
+height: 26px;
 }
 .bar {
 display: block;
