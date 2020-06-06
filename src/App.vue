@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Pokemon />
-    <div>
+    <div class="content">
+      <Pokemon />
+    </div>
+    <div class="footer">
       <a class="coffee" target="_blank" href="https://www.mercadopago.cl/checkout/v1/redirect?pref_id=270001614-b497f5e0-19f1-4f93-adc3-4f0a8e348866">Ayúdame con un ☕</a>
     </div>
   </div>
@@ -19,18 +21,33 @@ export default {
 </script>
 
 <style>
+body{
+  margin: 0;
+}
 #app {
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  display: flex;
+  align-content: space-between;
+  flex-wrap: wrap;
+}
+.content{
+  width: 100vw;
+}
+.footer{
+  width: 100vw;
+}
+.footer{
+  margin-bottom: 10px;
 }
 .coffee{
   text-decoration: none;
-  position: absolute;
-  bottom: 5px;
+  text-align: center;
+  margin-bottom: 5px;
 }
 .input{
   padding: .375rem .75rem;
