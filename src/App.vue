@@ -28,7 +28,6 @@ body{
   font-family: Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   height: 100vh;
   display: flex;
@@ -37,16 +36,17 @@ body{
 }
 .content{
   width: 100vw;
+  text-align: center;
 }
 .footer{
   width: 100vw;
 }
 .footer{
   margin-bottom: 10px;
+  text-align: center;
 }
 .coffee{
   text-decoration: none;
-  text-align: center;
   margin-bottom: 5px;
 }
 .input{

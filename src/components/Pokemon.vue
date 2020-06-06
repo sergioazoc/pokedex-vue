@@ -7,6 +7,16 @@
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
       <img :src="pokemon.sprites.front_default"/>
       <p><strong>Tipo:</strong> <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
+      <table class="stats">
+        <tr v-for="(stat, index) in pokemon.stats" :key="index">
+          <td>{{stat.stat.name}}</td>
+          <td>
+            <div class="grafico">
+              <div class="barra" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
     <div class="error" v-else-if="error">
       <img class="not_found" src="../assets/404.png" alt="no encontrado" />
@@ -75,14 +85,12 @@ export default {
 .error{
   margin-top: 30px;
 }
-
 .not_found{
   display: block;
   margin: 0 auto;
   height: 150px;
   width: auto;
 }
-
 .pokeball{
   display: block;
   width: 60px;
@@ -90,7 +98,6 @@ export default {
   margin: 50px auto 0 auto;
   animation:movePokeball 1s linear infinite both;
 }
-
 @keyframes movePokeball{
   0%{
     transform:translateX(0) rotate(0)
@@ -104,5 +111,24 @@ export default {
   45%{
     transform:translatex(0) rotate(0)
   }
+}
+.stats{
+  text-align: left;
+  margin: 30px auto;
+}
+.grafico {
+position: relative; /* IE is dumb */
+width: 166px;
+border: 1px solid #e3350d;
+}
+.grafico .barra {
+display: block;
+position: relative;
+background: #e3350d;
+color: #ffffff;
+padding: 4px 8px;
+}
+.grafico .barra span {
+position: absolute; left: 1em;
 }
 </style>
