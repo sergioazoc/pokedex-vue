@@ -9,10 +9,10 @@
       <p><strong>Tipo:</strong> <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
       <table class="stats">
         <tr v-for="(stat, index) in pokemon.stats" :key="index">
-          <td>{{stat.stat.name}}</td>
+          <td>{{changeLangStats(stat.stat.name)}}</td>
           <td>
-            <div class="grafico">
-              <div class="barra" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
+            <div class="bar_container">
+              <div class="bar" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
             </div>
           </td>
         </tr>
@@ -37,25 +37,33 @@ export default {
       pokemonToFind: "",
       error: false,
       loading: false,
-      types: [
-        {english: "normal", spanish: "normal"},
-        {english: "fighting", spanish: "lucha"},
-        {english: "flying", spanish: "volador"},
-        {english: "poison", spanish: "veneno"},
-        {english: "ground", spanish: "tierra"},
-        {english: "rock", spanish: "roca"},
-        {english: "bug", spanish: "bicho"},
-        {english: "ghost", spanish: "fantasma"},
-        {english: "steel", spanish: "acero"},
-        {english: "fire", spanish: "fuego"},
-        {english: "water", spanish: "agua"},
-        {english: "grass", spanish: "hierba"},
-        {english: "electric", spanish: "eléctrico"},
-        {english: "psychic", spanish: "psíquico"},
-        {english: "ice", spanish: "hielo"},
-        {english: "dragon", spanish: "dragón"},
-        {english: "dark", spanish: "oscuridad"},
-        {english: "fairy", spanish: "hada"}
+      types_api: [
+        {en: "normal", es: "normal"},
+        {en: "fighting", es: "lucha"},
+        {en: "flying", es: "volador"},
+        {en: "poison", es: "veneno"},
+        {en: "ground", es: "tierra"},
+        {en: "rock", es: "roca"},
+        {en: "bug", es: "bicho"},
+        {en: "ghost", es: "fantasma"},
+        {en: "steel", es: "acero"},
+        {en: "fire", es: "fuego"},
+        {en: "water", es: "agua"},
+        {en: "grass", es: "hierba"},
+        {en: "electric", es: "eléctrico"},
+        {en: "psychic", es: "psíquico"},
+        {en: "ice", es: "hielo"},
+        {en: "dragon", es: "dragón"},
+        {en: "dark", es: "oscuridad"},
+        {en: "fairy", es: "hada"}
+      ],
+      stats_api: [
+        {en: "hp", es: "vida"},
+        {en: "attack", es: "ataque"},
+        {en: "defense", es: "defensa"},
+        {en: "special-attack", es: "ataque especial"},
+        {en: "special-defense", es: "defensa especial"},
+        {en: "speed", es: "velocidad"}
       ]
     }
   },
@@ -71,9 +79,16 @@ export default {
         .catch( () => (this.error = true, this.loading = false))
     },
     changeLangType: function(type){
-      for (let index = 0; index < this.types.length; index++) {
-        if (type === this.types[index].english){
-          return this.types[index].spanish
+      for (let index = 0; index < this.types_api.length; index++) {
+        if (type === this.types_api[index].en){
+          return this.types_api[index].es
+        }
+      }
+    },
+    changeLangStats: function(stat){
+      for (let index = 0; index < this.stats_api.length; index++) {
+        if (stat === this.stats_api[index].en){
+          return this.stats_api[index].es
         }
       }
     }
@@ -116,12 +131,12 @@ export default {
   text-align: left;
   margin: 30px auto;
 }
-.grafico {
+.bar_container {
 position: relative; /* IE is dumb */
 width: 166px;
 border: 1px solid #e3350d;
 }
-.grafico .barra {
+.bar {
 display: block;
 position: relative;
 background: #e3350d;
