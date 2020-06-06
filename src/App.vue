@@ -4,7 +4,7 @@
       <Pokemon />
     </div>
     <div class="footer">
-      <a class="coffee" target="_blank" href="https://www.mercadopago.cl/checkout/v1/redirect?pref_id=270001614-b497f5e0-19f1-4f93-adc3-4f0a8e348866">Ayúdame con un ☕</a>
+      <a class="coffee" target="_blank" href="https://www.mercadopago.cl/checkout/v1/redirect?pref_id=270001614-b497f5e0-19f1-4f93-adc3-4f0a8e348866">Me ayudas con un ☕?</a>
     </div>
   </div>
 </template>
@@ -48,6 +48,7 @@ body{
 .coffee{
   text-decoration: none;
   margin-bottom: 5px;
+  color: #e3350d;
 }
 .input{
   padding: .375rem .75rem;
