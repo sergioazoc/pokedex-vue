@@ -71,14 +71,18 @@ export default {
   },
   methods: {
     findPokemon: function(q){
-      this.error = false
-      this.pokemon = null
-      this.loading = true
-      let query = q.toLowerCase()
-      axios
-        .get(this.url + query)
-        .then(response => (this.pokemon = response.data, this.loading = false))
-        .catch( () => (this.error = true, this.loading = false))
+      if(q == ""){
+        this.error = true
+      }else{
+        this.error = false
+        this.pokemon = null
+        this.loading = true
+        let query = q.toLowerCase()
+        axios
+          .get(this.url + query)
+          .then(response => (this.pokemon = response.data, this.loading = false))
+          .catch( () => (this.error = true, this.loading = false))
+      }
     },
     changeLangType: function(type){
       for (let index = 0; index < this.types_api.length; index++) {
