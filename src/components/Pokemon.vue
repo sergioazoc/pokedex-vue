@@ -13,7 +13,9 @@
             {{changeLangStats(stat.stat.name)}}
           </div>
           <div class="bar_container">
-            <div class="bar" :style= "'width:' + stat.base_stat +'px'">{{stat.base_stat}}</div>
+            <div class="bar" :style= "'width:' + stat.base_stat +'px'">
+              {{stat.base_stat}}
+            </div>
           </div>
         </div>
       </div>

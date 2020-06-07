@@ -4,7 +4,7 @@
       <Pokemon />
     </div>
     <div class="footer">
-      <a class="coffee" target="_blank" href="https://www.mercadopago.cl/checkout/v1/redirect?pref_id=270001614-b497f5e0-19f1-4f93-adc3-4f0a8e348866">Me ayudas con un ☕?</a>
+      <a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a>
     </div>
   </div>
 </template>
