@@ -1,12 +1,21 @@
 <template>
   <div>
     <h1>Busca un Pokémon (nombre o número):</h1>
+
     <input class="input" v-model="pokemonToFind" @keyup.enter="findPokemon(pokemonToFind)" type="text">
+
     <button class="btn" @click="findPokemon(pokemonToFind)">Buscar</button>
+
     <div v-if="pokemon && !error">
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
       <img :src="pokemon.sprites.front_default"/>
-      <p><strong>Tipo:</strong> <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">{{changeLangType(type.type.name)}}</span></p>
+      <p>
+        <strong>Tipo:</strong> 
+        <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">
+          {{changeLangType(type.type.name)}}
+        </span>
+      </p>
+
       <div class="stats">
         <div class="stat" v-for="(stat, index) in pokemon.stats" :key="index">
           <div>
@@ -20,11 +29,15 @@
         </div>
       </div>
     </div>
+
     <div class="error" v-else-if="error">
       <img class="not_found" src="../assets/404.png" alt="no encontrado" />
-      <p>Pokémon no encontrado...</p>
+      <p v-if="vacio">Deberías escribir algo...</p>
+      <p v-else>{{pokemonFail}} no encontrado...</p>
     </div>
+
     <img v-if="loading" class="pokeball" src="../assets/pokeball.svg" alt="cargando">
+
   </div>
 </template>
 
@@ -37,7 +50,9 @@ export default {
       url: "https://pokeapi.co/api/v2/pokemon/",
       pokemon: null,
       pokemonToFind: "",
+      pokemonFail: "",
       error: false,
+      vacio: false,
       loading: false,
       types_api: [
         {en: "normal", es: "normal"},
@@ -73,6 +88,7 @@ export default {
     findPokemon: function(q){
       if(q == ""){
         this.error = true
+        this.vacio = true
       }else{
         this.error = false
         this.pokemon = null
@@ -81,7 +97,7 @@ export default {
         axios
           .get(this.url + query)
           .then(response => (this.pokemon = response.data, this.loading = false))
-          .catch( () => (this.error = true, this.loading = false))
+          .catch( () => (this.error = true, this.loading = false, this.vacio = false, this.pokemonFail = this.pokemonToFind))
       }
     },
     changeLangType: function(type){
