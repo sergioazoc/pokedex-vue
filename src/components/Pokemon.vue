@@ -1,10 +1,11 @@
 <template>
   <div>
-    <h1>Busca un Pokémon (nombre o número):</h1>
+    <h1>Pokedex Vue.js</h1>
 
-    <input class="input" v-model="pokemonToFind" @keyup.enter="findPokemon(pokemonToFind)" type="text">
-
-    <button class="btn" @click="findPokemon(pokemonToFind)">Buscar</button>
+    <form v-on:submit.prevent="findPokemon">
+      <input class="input" v-model="pokemonToFind" type="text" placeholder="Nombre o Número">
+      <input type="submit" class="btn" value="Buscar Pokémon"/>
+    </form>
 
     <div v-if="pokemon && !error">
       <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
@@ -28,12 +29,13 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <div class="error" v-else-if="error">
       <img class="not_found" src="../assets/404.png" alt="no encontrado" />
       <p v-if="vacio">Deberías escribir algo...</p>
-      <p v-else>{{pokemonFail}} no encontrado...</p>
+      <p v-else>No encontramos datos de {{pokemonFail}}...</p>
     </div>
 
     <img v-if="loading" class="pokeball" src="../assets/pokeball.svg" alt="cargando">
@@ -85,29 +87,38 @@ export default {
     }
   },
   methods: {
-    findPokemon: function(q){
-      if(q == ""){
+    findPokemon(){
+      if(this.pokemonToFind == ""){
         this.error = true
         this.vacio = true
       }else{
         this.error = false
         this.pokemon = null
         this.loading = true
-        let query = q.toLowerCase()
+        let query = this.pokemonToFind.toLowerCase()
         axios
           .get(this.url + query)
-          .then(response => (this.pokemon = response.data, this.loading = false))
-          .catch( () => (this.error = true, this.loading = false, this.vacio = false, this.pokemonFail = this.pokemonToFind))
+          .then(response => {
+            this.pokemon = response.data, 
+            this.loading = false
+          })
+          .catch( () => {
+            this.error = true, 
+            this.loading = false, 
+            this.vacio = false, 
+            this.pokemonFail = this.pokemonToFind
+          })
+          
       }
     },
-    changeLangType: function(type){
+    changeLangType(type){
       for (let index = 0; index < this.types_api.length; index++) {
         if (type === this.types_api[index].en){
           return this.types_api[index].es
         }
       }
     },
-    changeLangStats: function(stat){
+    changeLangStats(stat){
       for (let index = 0; index < this.stats_api.length; index++) {
         if (stat === this.stats_api[index].en){
           return this.stats_api[index].es
