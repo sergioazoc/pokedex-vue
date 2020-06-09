@@ -3,8 +3,8 @@
     <h1>Pokedex Vue.js</h1>
 
     <form v-on:submit.prevent="findPokemon">
-      <input class="input" v-model="pokemonToFind" type="text" placeholder="Nombre o Número">
-      <input type="submit" class="btn" value="Buscar Pokémon"/>
+      <input class="input" v-model="pokemonToFind" type="search" placeholder="Nombre o Número">
+      <input type="submit" class="btn" value="Buscar"/>
     </form>
 
     <div v-if="pokemon && !error">
@@ -19,9 +19,7 @@
 
       <div class="stats">
         <div class="stat" v-for="(stat, index) in pokemon.stats" :key="index">
-          <div>
-            {{changeLangStats(stat.stat.name)}}
-          </div>
+          <p>{{changeLangStats(index)}}</p>
           <div class="bar_container">
             <div class="bar" :style= "'width:' + stat.base_stat +'px'">
               {{stat.base_stat}}
@@ -89,26 +87,25 @@ export default {
   methods: {
     findPokemon(){
       if(this.pokemonToFind == ""){
-        this.error = true
-        this.vacio = true
+        this.error = true;
+        this.vacio = true;
       }else{
-        this.error = false
-        this.pokemon = null
-        this.loading = true
-        let query = this.pokemonToFind.toLowerCase()
+        this.error = false;
+        this.pokemon = null;
+        this.loading = true;
+        let query = this.pokemonToFind.toLowerCase();
         axios
           .get(this.url + query)
           .then(response => {
-            this.pokemon = response.data, 
-            this.loading = false
+            this.pokemon = response.data;
+            this.loading = false;
           })
           .catch( () => {
-            this.error = true, 
-            this.loading = false, 
-            this.vacio = false, 
-            this.pokemonFail = this.pokemonToFind
-          })
-          
+            this.error = true; 
+            this.loading = false;
+            this.vacio = false;
+            this.pokemonFail = this.pokemonToFind;
+          });
       }
     },
     changeLangType(type){
@@ -118,12 +115,8 @@ export default {
         }
       }
     },
-    changeLangStats(stat){
-      for (let index = 0; index < this.stats_api.length; index++) {
-        if (stat === this.stats_api[index].en){
-          return this.stats_api[index].es
-        }
-      }
+    changeLangStats(index){
+      return this.stats_api[index].es;
     }
   }
 };
@@ -148,44 +141,48 @@ export default {
 }
 @keyframes movePokeball{
   0%{
-    transform:translateX(0) rotate(0)
+    transform:translateX(0) rotate(0);
   }
   15%{
-    transform:translatex(-10px) rotate(-5deg)
+    transform:translatex(-10px) rotate(-5deg);
   }
   30%{
-    transform:translateX(10px) rotate(5deg)
+    transform:translateX(10px) rotate(5deg);
   }
   45%{
-    transform:translatex(0) rotate(0)
+    transform:translatex(0) rotate(0);
   }
 }
 .stats{
   text-align: left;
-  margin: 30px auto;
-  max-width: 360px;
-  padding: 0 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0 30px 0;
 }
 .stat{
-  display: flex;
-  margin: 5px 0;
-  justify-content: space-between;
+  margin: 10px 0;
+}
+.stat p{
+  margin: 0 0 2px 0;
+  text-align: center;
 }
 
 .bar_container {
-position: relative;
-width: 216px;
-border: 1px solid #e3350d;
-height: 26px;
+  position: relative;
+  width: 266px;
+  border: 1px solid #e3350d;
+  height: 26px;
 }
 .bar {
-display: block;
-position: relative;
-background: #e3350d;
-color: #ffffff;
-padding: 4px 8px;
+  display: block;
+  position: relative;
+  background: #e3350d;
+  color: #ffffff;
+  padding: 4px 8px;
 }
 .grafico .barra span {
-position: absolute; left: 1em;
+  position: absolute; 
+  left: 1em;
 }
 </style>
