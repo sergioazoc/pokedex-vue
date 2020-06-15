@@ -1,5 +1,7 @@
 # pokedex-vue
 
+Hola! esta mi versión de la Pokedex hecha con Vue.js, Vuex y el Api de [PokeApi](https://pokeapi.co/)
+
 ## Project setup
 ```
 npm install
