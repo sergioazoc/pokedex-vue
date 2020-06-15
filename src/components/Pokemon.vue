@@ -1,15 +1,8 @@
 <template>
   <div>
-    <h1>Pokedex Vue.js</h1>
-
-    <form v-on:submit.prevent="findPokemon">
-      <input class="input" v-model="pokemonToFind" type="search" placeholder="Nombre o Número">
-      <input type="submit" class="btn" value="Buscar"/>
-    </form>
-
-    <div v-if="pokemon && !error">
-      <h2>N°{{pokemon.id}} {{pokemon.species.name.toUpperCase()}}</h2>
-      <img :src="pokemon.sprites.front_default"/>
+    <template v-if="pokemon">
+      <h2>N°{{pokemon.id}} {{pokemon.name.toUpperCase()}}</h2>
+      <img v-if="pokemon.sprites.front_default" :src="pokemon.sprites.front_default" :alt="pokemon.name"/>
       <p>
         <strong>Tipo:</strong> 
         <span class="type" :class="type.type.name" v-for="(type, index) in pokemon.types" :key="index">
@@ -27,33 +20,21 @@
           </div>
         </div>
       </div>
+    </template>
 
-    </div>
-
-    <div class="error" v-else-if="error">
-      <img class="not_found" src="../assets/404.png" alt="no encontrado" />
-      <p v-if="vacio">Deberías escribir algo...</p>
-      <p v-else>No encontramos datos de {{pokemonFail}}...</p>
-    </div>
-
-    <img v-if="loading" class="pokeball" src="../assets/pokeball.svg" alt="cargando">
-
+    <template v-if="queryEmpty">
+      <p>Deberías escribir algo...</p>
+    </template>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { mapState } from "vuex";
+
 export default {
   name: "Pokemon",
   data () {
     return {
-      url: "https://pokeapi.co/api/v2/pokemon/",
-      pokemon: null,
-      pokemonToFind: "",
-      pokemonFail: "",
-      error: false,
-      vacio: false,
-      loading: false,
       types_api: [
         {en: "normal", es: "normal"},
         {en: "fighting", es: "lucha"},
@@ -84,30 +65,15 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(
+      [
+        'pokemon',
+        'queryEmpty'
+      ]
+    ),
+  },
   methods: {
-    findPokemon(){
-      if(this.pokemonToFind == ""){
-        this.error = true;
-        this.vacio = true;
-      }else{
-        this.error = false;
-        this.pokemon = null;
-        this.loading = true;
-        let query = this.pokemonToFind.toLowerCase();
-        axios
-          .get(this.url + query)
-          .then(response => {
-            this.pokemon = response.data;
-            this.loading = false;
-          })
-          .catch( () => {
-            this.error = true; 
-            this.loading = false;
-            this.vacio = false;
-            this.pokemonFail = this.pokemonToFind;
-          });
-      }
-    },
     changeLangType(type){
       for (let index = 0; index < this.types_api.length; index++) {
         if (type === this.types_api[index].en){
@@ -123,36 +89,6 @@ export default {
 </script>
 
 <style scoped>
-.error{
-  margin-top: 30px;
-}
-.not_found{
-  display: block;
-  margin: 0 auto;
-  height: 150px;
-  width: auto;
-}
-.pokeball{
-  display: block;
-  width: 60px;
-  height: 60px;
-  margin: 50px auto 0 auto;
-  animation:movePokeball 1s linear infinite both;
-}
-@keyframes movePokeball{
-  0%{
-    transform:translateX(0) rotate(0);
-  }
-  15%{
-    transform:translatex(-10px) rotate(-5deg);
-  }
-  30%{
-    transform:translateX(10px) rotate(5deg);
-  }
-  45%{
-    transform:translatex(0) rotate(0);
-  }
-}
 .stats{
   text-align: left;
   display: flex;

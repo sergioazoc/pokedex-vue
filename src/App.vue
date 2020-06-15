@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="content">
-      <Pokemon />
+      <h1>Pokedex Vue.js</h1>
+      <Finder/>
+
     </div>
     <div class="footer">
       <a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a>
@@ -10,12 +12,13 @@
 </template>
 
 <script>
-import Pokemon from "./components/Pokemon.vue";
+import Finder from "./components/Finder.vue";
 
 export default {
   name: "App",
   components: {
-    Pokemon
+    Finder,
+    
   }
 };
 </script>
