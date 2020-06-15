@@ -1,9 +1,10 @@
 <template>
   <div id="app">
-    <div class="content">
+    <div class="header">
       <h1>Pokedex Vue.js</h1>
+    </div>
+    <div class="content">
       <Finder/>
-
     </div>
     <div class="footer">
       <a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a>
@@ -37,8 +38,19 @@ body{
   align-content: space-between;
   flex-wrap: wrap;
 }
+.header{
+  width: 100vw;
+  padding: 10px;
+  background-color: #e3350d;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+.header h1{
+  font-size: 16px;
+}
 .content{
   width: 100vw;
+  min-height: calc(100vh - 110px);
   text-align: center;
 }
 .footer{

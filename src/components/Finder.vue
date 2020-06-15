@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="finder">
     <form @submit.prevent="findPokemon(pokemonToFind)">
       <input class="input" v-model="pokemonToFind" type="search" placeholder="Nombre o Número" required>
       <input type="submit" class="btn" value="Buscar"/>
@@ -38,5 +38,11 @@ export default {
 </script>
 
 <style scoped>
-
+.finder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
 </style>

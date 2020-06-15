@@ -9,7 +9,7 @@ export default {
     }else{
       try {
         const response = await axios
-          .get(baseURL + query);
+          .get(baseURL + query.toLowerCase());
         return response.data;
       }
       catch (e) {
