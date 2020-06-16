@@ -1,5 +1,6 @@
 <template>
   <div class="finder">
+    <h1>Busca tu Pokémon!</h1>
     <form @submit.prevent="findPokemon(pokemonToFind)">
       <input class="input" v-model="pokemonToFind" type="search" placeholder="Nombre o Número" required>
       <input type="submit" class="btn" value="Buscar"/>

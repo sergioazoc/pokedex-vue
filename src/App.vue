@@ -1,26 +1,24 @@
 <template>
   <div id="app">
-    <div class="header">
-      <h1>Pokedex Vue.js</h1>
-    </div>
+    <nav class="header">
+      <p>Pokedex Vue.js</p>
+      <div class="links">
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+      </div>
+    </nav>
     <div class="content">
-      <Finder/>
+      <router-view />
     </div>
-    <div class="footer">
+    <footer class="footer">
       <a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a>
-    </div>
+    </footer>
   </div>
 </template>
 
 <script>
-import Finder from "./components/Finder.vue";
-
 export default {
-  name: "App",
-  components: {
-    Finder,
-    
-  }
+  name: "App"
 };
 </script>
 
@@ -35,23 +33,36 @@ body{
   color: #2c3e50;
   height: 100vh;
   display: flex;
-  align-content: space-between;
   flex-wrap: wrap;
 }
 .header{
   width: 100vw;
-  padding: 10px;
+  padding: 0 10px;
   background-color: #e3350d;
   color: #ffffff;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.header h1{
-  font-size: 16px;
+.header .links a{
+  text-decoration: none;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: #ffe4e4dc;
+  height: 100%;
+}
+.header .links a:last-child{
+  padding-right: 0;
+}
+.header .links a:hover{
+  color: #ffffff;
+}
+.header .links .router-link-exact-active{
+  color: #ffffff;
 }
 .content{
   width: 100vw;
-  min-height: calc(100vh - 110px);
-  text-align: center;
+  min-height: calc(100vh - 128px);
 }
 .footer{
   width: 100vw;

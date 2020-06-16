@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pokemon">
     <template v-if="pokemon">
       <h2>N°{{pokemon.id}} {{pokemon.name.toUpperCase()}}</h2>
       <img v-if="pokemon.sprites.front_default" :src="pokemon.sprites.front_default" :alt="pokemon.name"/>
@@ -89,8 +89,10 @@ export default {
 </script>
 
 <style scoped>
+.pokemon{
+  text-align: center;
+}
 .stats{
-  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -101,7 +103,6 @@ export default {
 }
 .stat p{
   margin: 0 0 2px 0;
-  text-align: center;
 }
 
 .bar_container {
@@ -111,6 +112,7 @@ export default {
   height: 26px;
 }
 .bar {
+  text-align: left;
   display: block;
   position: relative;
   background: #e3350d;
