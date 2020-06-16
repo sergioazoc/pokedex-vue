@@ -12,6 +12,8 @@
     </ul>
     <p>Puedes ver el repositorio en mi <a href="https://github.com/sergioazoc/pokedex-vue" target="_blank">GitHub</a></p>
     <p>o pasa a saludar a mi <a href="https://twitter.com/sergioazoc" target="_blank">Twitter</a></p>
+    <br>
+    <p><a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a></p>
   </div>
 </template>
 

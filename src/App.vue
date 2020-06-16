@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <nav class="header">
-      <p>Pokedex Vue.js</p>
+      <p><strong>Pokedex Vue.js</strong></p>
       <div class="links">
         <router-link to="/">Home</router-link>
         <router-link to="/about">About</router-link>
@@ -10,9 +10,6 @@
     <div class="content">
       <router-view />
     </div>
-    <footer class="footer">
-      <a class="coffee" target="_blank" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V8N7RVKVZY37W&source=url">Me ayudas con un ☕?</a>
-    </footer>
   </div>
 </template>
 
@@ -36,6 +33,7 @@ body{
   flex-wrap: wrap;
 }
 .header{
+  height: 60px;
   width: 100vw;
   padding: 0 10px;
   background-color: #e3350d;
@@ -62,19 +60,7 @@ body{
 }
 .content{
   width: 100vw;
-  min-height: calc(100vh - 128px);
-}
-.footer{
-  width: 100vw;
-}
-.footer{
-  margin-bottom: 10px;
-  text-align: center;
-}
-.coffee{
-  text-decoration: none;
-  margin-bottom: 5px;
-  color: #e3350d;
+  min-height: calc(100vh - 60px);
 }
 .input{
   padding: .375rem .75rem;
