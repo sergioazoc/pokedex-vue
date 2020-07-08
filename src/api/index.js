@@ -4,15 +4,13 @@ const baseURL = "https://pokeapi.co/api/v2/pokemon/";
 
 export default {
   async findPokemon(query) {
-    if(query === ""){
+    if (query === "") {
       return "empty";
-    }else{
+    } else {
       try {
-        const response = await axios
-          .get(baseURL + query.toLowerCase());
+        const response = await axios.get(baseURL + query.toLowerCase());
         return response.data;
-      }
-      catch (e) {
+      } catch (e) {
         console.log(e);
         return ["error", query];
       }
@@ -30,4 +28,4 @@ export default {
       });
   }
   */
-}
+};

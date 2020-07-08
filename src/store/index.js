@@ -9,26 +9,25 @@ export default new Vuex.Store({
     pokemon: null,
     queryEmpty: false,
     queryError: null,
-    loading: false
+    loading: false,
   },
   //getters, son para calcular con los datos del estado (cómo computed)
   getters: {},
   //mutations, son para modificar el estado (cómo methods), deben ser síncronas
   mutations: {
     //getDataPokemons: (state, data) => state.pokemonsAll = data
-    getPokemon(state, data){
-      
-      if(data[0] === "error"){
+    getPokemon(state, data) {
+      if (data[0] === "error") {
         state.queryError = data[1];
-      }else if(data === "empty"){
+      } else if (data === "empty") {
         state.queryEmpty = true;
-      }else{
+      } else {
         state.pokemon = data;
       }
-      
+
       state.loading = false;
     },
-    loading(state){
+    loading(state) {
       state.queryEmpty = false;
       state.queryError = null;
       state.pokemon = null;
@@ -39,11 +38,11 @@ export default new Vuex.Store({
   actions: {
     findPokemon: (context, query) => {
       context.commit("loading");
-      api.findPokemon(query).then((data) => {
+      api.findPokemon(query).then(data => {
         context.commit("getPokemon", data);
       });
     }
   },
-  //modules, 
+  //modules,
   modules: {}
 });

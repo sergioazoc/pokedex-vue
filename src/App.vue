@@ -20,7 +20,7 @@ export default {
 </script>
 
 <style>
-body{
+body {
   margin: 0;
 }
 #app {
@@ -32,7 +32,7 @@ body{
   display: flex;
   flex-wrap: wrap;
 }
-.header{
+.header {
   height: 60px;
   width: 100vw;
   padding: 0 10px;
@@ -42,99 +42,99 @@ body{
   align-items: center;
   justify-content: space-between;
 }
-.header .links a{
+.header .links a {
   text-decoration: none;
   padding-left: 10px;
   padding-right: 10px;
   color: #ffe4e4dc;
   height: 100%;
 }
-.header .links a:last-child{
+.header .links a:last-child {
   padding-right: 0;
 }
-.header .links a:hover{
+.header .links a:hover {
   color: #ffffff;
 }
-.header .links .router-link-exact-active{
+.header .links .router-link-exact-active {
   color: #ffffff;
 }
-.content{
+.content {
   width: 100vw;
   min-height: calc(100vh - 60px);
 }
-.input{
-  padding: .375rem .75rem;
+.input {
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
-  border-radius: .25rem 0 0 .25rem;
+  border-radius: 0.25rem 0 0 0.25rem;
 }
-.btn{
+.btn {
   display: inline-block;
-  padding: .375rem .75rem;
+  padding: 0.375rem 0.75rem;
   font-size: 1rem;
-  border-radius: 0 .25rem .25rem 0;
+  border-radius: 0 0.25rem 0.25rem 0;
   background-color: #e3350d;
   border-color: #e3350d;
   color: #ffffff;
 }
 
-.type{
+.type {
   margin: 0 5px;
   padding: 6px 10px;
   color: #ffffff;
   border-radius: 10px;
 }
-.normal{
+.normal {
   background-color: #a4acaf;
 }
-.fighting{
+.fighting {
   background-color: #d56723;
 }
-.flying{
+.flying {
   background: linear-gradient(180deg, #3dc7ef 50%, #bdb9b8 50%);
 }
-.poison{
+.poison {
   background-color: #b97fc9;
 }
-.ground{
+.ground {
   background: linear-gradient(180deg, #f7de3f 50%, #ab9842 50%);
 }
-.rock{
+.rock {
   background-color: #a38c21;
 }
-.bug{
+.bug {
   background-color: #729f3f;
 }
-.ghost{
+.ghost {
   background-color: #7b62a3;
 }
-.steel{
+.steel {
   background: linear-gradient(180deg, #9eb7b8 50%, #9eb7b8 50%);
 }
-.fire{
+.fire {
   background-color: #fd7d24;
 }
-.water{
+.water {
   background-color: #4592c4;
 }
-.grass{
+.grass {
   background-color: #9bcc50;
 }
-.electric{
+.electric {
   background-color: #eed535;
 }
-.psychic{
+.psychic {
   background-color: #f366b9;
 }
-.ice{
+.ice {
   background-color: #51c4e7;
 }
-.dragon{
+.dragon {
   background: linear-gradient(180deg, #53a4cf 50%, #f16e57 50%);
 }
-.dark{
+.dark {
   background-color: #707070;
 }
-.fairy{
+.fairy {
   background-color: #fdb9e9;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <Finder/>
+  <Finder />
 </template>
 
 <script>

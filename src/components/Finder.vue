@@ -2,12 +2,18 @@
   <div class="finder">
     <h1>Busca tu Pokémon!</h1>
     <form @submit.prevent="findPokemon(pokemonToFind)">
-      <input class="input" v-model="pokemonToFind" type="search" placeholder="Nombre o Número" required>
-      <input type="submit" class="btn" value="Buscar"/>
+      <input
+        class="input"
+        v-model="pokemonToFind"
+        type="search"
+        placeholder="Nombre o Número"
+        required
+      />
+      <input type="submit" class="btn" value="Buscar" />
     </form>
-    <Loading v-if="loading"/>
-    <Pokemon/>
-    <Error v-if="queryError" :error="queryError"/>
+    <Loading v-if="loading" />
+    <Pokemon />
+    <Error v-if="queryError" :error="queryError" />
   </div>
 </template>
 
@@ -19,27 +25,27 @@ import { mapActions, mapState } from "vuex";
 
 export default {
   name: "Finder",
-  data (){
+  data() {
     return {
       pokemonToFind: ""
-    }
+    };
   },
   methods: {
-    ...mapActions(['findPokemon'])
+    ...mapActions(["findPokemon"])
   },
   computed: {
-    ...mapState(['loading', 'queryError'])
+    ...mapState(["loading", "queryError"])
   },
   components: {
     Pokemon,
     Loading,
     Error
   }
-}
+};
 </script>
 
 <style scoped>
-.finder{
+.finder {
   display: flex;
   align-items: center;
   justify-content: center;
