@@ -1,4 +1,4 @@
-[
+export const types = [
   {
     name: "bug",
     color: "#83C300"
